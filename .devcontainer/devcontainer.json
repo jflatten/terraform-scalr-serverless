@@ -19,7 +19,8 @@
         "extensions": [
             "hashicorp.terraform",
             "ms-azuretools.vscode-docker",
-            "ms-python.python"
+            "ms-python.python",
+            "prismacloud.prisma-cloud"
         ]
       }
     }
