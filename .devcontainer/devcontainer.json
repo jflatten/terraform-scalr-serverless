@@ -1,6 +1,9 @@
 {
   "name": "scalr-test-infrastructure devcontainer",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "build": { 
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
 
   "features": {
     "ghcr.io/devcontainers/features/terraform:1": {
@@ -22,7 +25,9 @@
             "ms-python.python",
             "prismacloud.prisma-cloud",
             "github.copilot",
-            "github.copilot-chat"
+            "github.copilot-chat",
+            "ms-python.python",
+            "ms-azuretools.vscode-containers"
         ]
       }
     }
