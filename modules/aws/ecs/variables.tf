@@ -3,6 +3,12 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "vpc_cidr" {
+  description = "VPC CIDR block used for default security rule restrictions"
+  type        = string
+  default     = "0.0.0.0/0"
+}
+
 variable "allow_all_ingress" {
   description = "Whether to allow all ingress traffic"
   type        = bool

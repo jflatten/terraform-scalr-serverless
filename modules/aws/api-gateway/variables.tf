@@ -1,5 +1,5 @@
 variable "environment" {
-  type = string
+  type        = string
   description = "API Gateway Environment name"
 }
 
@@ -14,7 +14,7 @@ variable "lambda_function_name" {
 }
 
 variable "name" {
-  type = string
+  type        = string
   description = "Name of the API gateway"
 }
 

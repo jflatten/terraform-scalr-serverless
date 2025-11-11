@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     scalr = {
-      source  = "scalr/scalr"
+      source = "scalr/scalr"
     }
   }
 }
@@ -10,7 +10,7 @@ data "scalr_current_account" "this" {}
 
 resource "scalr_agent_pool" "webhook" {
   name = var.agent_pool_name
-  
+
   # Future: Add serverless webhook configuration when API Gateway details are available
   # Uncomment when implementing bidirectional integration
   /*

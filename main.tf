@@ -41,9 +41,9 @@ module "api_gateway" {
 module "networking" {
   source = "./modules/aws/networking"
 
-  name = var.vpc_name
-  cidr = "10.0.0.0/16"
-  azs = slice(data.aws_availability_zones.available.names, 0, 2)
+  name                = var.vpc_name
+  cidr                = "10.0.0.0/16"
+  azs                 = slice(data.aws_availability_zones.available.names, 0, 2)
   public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
 }
 
@@ -62,6 +62,7 @@ module "lambda" {
   subnet_ids          = module.networking.public_subnet_ids
   cluster_name        = module.ecs.cluster_name
   task_definition_arn = module.ecs.task_definition_arn
+  task_role_arn       = module.ecs.task_role_arn
   security_group_id   = module.ecs.security_group_id
   function_name       = var.lambda_function_name
   handler             = var.lambda_handler
@@ -73,7 +74,7 @@ module "lambda" {
 
 module "agent_pool" {
   source = "./modules/scalr/agent-pool"
-  
+
   webhook_url = module.api_gateway.url
   webhook_headers = [
     {
@@ -92,6 +93,7 @@ module "agent_pool" {
 module "ecs" {
   source            = "./modules/aws/ecs"
   vpc_id            = module.networking.vpc_id
+  vpc_cidr          = module.networking.vpc_cidr_block
   allow_all_ingress = var.allow_all_ingress
   limit_cpu         = var.ecs_limit_cpu
   limit_memory      = var.ecs_limit_memory
@@ -103,9 +105,9 @@ module "ecs" {
 
   security_group_name = var.ecs_security_group_name
   task_stop_timeout   = var.ecs_task_stop_timeout
-  
+
   # EFS configuration for persistent cache
-  efs_file_system_id                = module.efs.file_system_id
-  terraform_cache_access_point_id   = module.efs.terraform_cache_access_point_id
-  providers_cache_access_point_id   = module.efs.providers_cache_access_point_id
+  efs_file_system_id              = module.efs.file_system_id
+  terraform_cache_access_point_id = module.efs.terraform_cache_access_point_id
+  providers_cache_access_point_id = module.efs.providers_cache_access_point_id
 }

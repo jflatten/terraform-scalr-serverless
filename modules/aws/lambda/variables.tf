@@ -1,6 +1,6 @@
 variable "subnet_ids" {
   description = "List of subnet IDs for the Fargate task"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "cluster_name" {
@@ -46,4 +46,16 @@ variable "timeout" {
 variable "memory_size" {
   description = "Memory size for the Lambda function in MB"
   type        = number
+}
+
+variable "task_role_arn" {
+  description = "ARN of the ECS task role which Lambda may need to pass when invoking tasks"
+  type        = string
+  default     = ""
+}
+
+variable "reserved_concurrent_executions" {
+  description = "Reserved concurrency for the Lambda function (optional)"
+  type        = number
+  default     = 0
 }

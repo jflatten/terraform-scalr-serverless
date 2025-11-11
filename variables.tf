@@ -88,9 +88,9 @@ variable "lambda_memory_size" {
 }
 
 variable "vpc_name" {
-  type = string
+  type        = string
   description = "VPC Network name"
-  default = "scalr-agent"
+  default     = "scalr-agent"
 }
 
 variable "ecs_task_stop_timeout" {
