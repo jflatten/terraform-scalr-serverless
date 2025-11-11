@@ -1,0 +1,27 @@
+{
+  "name": "scalr-test-infrastructure devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+  "features": {
+    "ghcr.io/devcontainers/features/terraform:1": {
+      "version": "1.5.7"
+    }
+  },
+
+  "postCreateCommand": "terraform --version || true",
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terraform.languageServer": {
+          "enabled": true
+        },
+        "extensions": [
+            "hashicorp.terraform",
+            "ms-azuretools.vscode-docker",
+            "ms-python.python"
+        ]
+      }
+    }
+  }
+}
